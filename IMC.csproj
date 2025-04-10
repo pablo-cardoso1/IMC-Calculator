@@ -8,6 +8,7 @@
   </PropertyGroup>
   <PropertyGroup>
   <StaticWebAssetBasePath>IMC-Calculator/</StaticWebAssetBasePath>
+  <BasePath>/IMC-Calculator/</BasePath>
   </PropertyGroup>
 
   <ItemGroup>
