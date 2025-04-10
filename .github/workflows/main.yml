@@ -3,7 +3,6 @@ name: Deploy
 on:
   push:
     branches: ["main"]
-
   workflow_dispatch:
 
 permissions:
@@ -30,7 +29,6 @@ jobs:
         with:
           dotnet-version: 9.0.x
 
-
       - name: Install .NET Wasm Tools
         run: dotnet workload install wasm-tools
 
@@ -41,13 +39,13 @@ jobs:
         run: dotnet build -c Release --no-restore
 
       - name: Publish .NET
-        run: dotnet publish IMC.csproj -c:Release -o docs --nologo /p:StaticWebAssetBasePath=IMC-Calculator
+        run: dotnet publish IMC.csproj -c Release -o release --nologo /p:StaticWebAssetBasePath=IMC-Calculator
 
       - name: Copy index.html to 404.html
-        run: cp docs/wwwroot/IMC-Calculator/index.html docs/wwwroot/IMC-Calculator/404.html
+        run: cp release/wwwroot/index.html release/wwwroot/404.html
 
       - name: Add .nojekyll file
-        run: touch docs/wwwroot/.nojekyll
+        run: touch release/wwwroot/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -55,7 +53,7 @@ jobs:
       - name: Upload
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'docs/wwwroot'
+          path: 'release/wwwroot'
 
       - name: Deploy
         id: deployment
