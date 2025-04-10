@@ -44,7 +44,7 @@ jobs:
         run: dotnet publish IMC.csproj -c:Release -o docs --nologo
 
       - name: Copy index.html to 404.html
-        run: cp docs/wwwroot/index.html docs/wwwroot/404.html
+        run: cp docs/wwwroot/IMC-Calculator/index.html docs/wwwroot/IMC-Calculator/404.html
 
       - name: Add .nojekyll file
         run: touch docs/wwwroot/.nojekyll
