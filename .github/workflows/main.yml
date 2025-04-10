@@ -41,7 +41,7 @@ jobs:
         run: dotnet build -c Release --no-restore
 
       - name: Publish .NET
-        run: dotnet publish IMC.csproj -c:Release -o docs --nologo
+        run: dotnet publish IMC.csproj -c:Release -o docs --nologo /p:StaticWebAssetBasePath=IMC-Calculator
 
       - name: Copy index.html to 404.html
         run: cp docs/wwwroot/IMC-Calculator/index.html docs/wwwroot/IMC-Calculator/404.html
