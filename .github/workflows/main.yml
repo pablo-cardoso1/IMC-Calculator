@@ -43,7 +43,7 @@ jobs:
 
       - name: Verificar se index.html existe
         run: |
-          if [ -f docs/wwwroot/index.html ]; then
+          if [ -f docs/wwwroot/IMC-Calculator/index.html ]; then
             echo "index.html encontrado!"
           else
             echo "index.html NÃO encontrado!"
