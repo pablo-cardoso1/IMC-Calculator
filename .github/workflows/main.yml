@@ -21,6 +21,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -40,13 +41,13 @@ jobs:
         run: dotnet build -c Release --no-restore
 
       - name: Publish .NET
-        run: dotnet publish IMC.csproj -c Release --nologo
+        run: dotnet publish IMC.csproj -c Release -o docs --nologo
 
       - name: Copy index.html to 404.html
-        run: cp bin/Release/net9.0/publish/wwwroot/index.html bin/Release/net9.0/publish/wwwroot/404.html
+        run: cp docs/wwwroot/index.html docs/wwwroot/404.html
 
       - name: Add .nojekyll file
-        run: touch bin/Release/net9.0/publish/wwwroot/.nojekyll
+        run: touch docs/wwwroot/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -54,7 +55,7 @@ jobs:
       - name: Upload
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'bin/Release/net9.0/publish/wwwroot'
+          path: 'docs/wwwroot'
 
       - name: Deploy
         id: deployment
